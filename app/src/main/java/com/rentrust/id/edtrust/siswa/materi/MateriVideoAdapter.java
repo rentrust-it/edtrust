@@ -1,48 +1,47 @@
 package com.rentrust.id.edtrust.siswa.materi;
 
+import android.app.Activity;
 import android.content.Context;
-import android.net.Uri;
-import android.util.Log;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.media.ThumbnailUtils;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.exoplayer2.ExoPlayerFactory;
-import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
-import com.google.android.exoplayer2.extractor.ExtractorsFactory;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
-import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.trackselection.TrackSelector;
-import com.google.android.exoplayer2.ui.PlayerView;
-import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
-import com.google.android.exoplayer2.upstream.BandwidthMeter;
-import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.rentrust.id.edtrust.R;
 import com.rentrust.id.edtrust.model.modelMateri;
-import com.rentrust.id.edtrust.siswa.materi.ui.SectionsPagerAdapter;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class MateriVideoAdapter extends RecyclerView.Adapter<MateriVideoAdapter.RecyclerViewAdapter> {
 
     private Context context;
+    private Activity activity;
     private List<modelMateri> models;
     private MateriVideoAdapter.ItemClickListener itemClickListener;
 
     public MateriVideoAdapter(
-            Context context, List<modelMateri> models,
+            Context context,
+            Activity activity,
+            List<modelMateri> models,
             MateriVideoAdapter.ItemClickListener itemClickListener) {
 
         this.context = context;
+        this.activity = activity;
         this.models = models;
         this.itemClickListener = itemClickListener;
 
@@ -53,7 +52,8 @@ public class MateriVideoAdapter extends RecyclerView.Adapter<MateriVideoAdapter.
     public MateriVideoAdapter.RecyclerViewAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.list_vid,
                 parent, false);
-        return new MateriVideoAdapter.RecyclerViewAdapter(view, itemClickListener);
+
+        return new RecyclerViewAdapter(view, itemClickListener);
     }
 
     @Override
@@ -64,21 +64,31 @@ public class MateriVideoAdapter extends RecyclerView.Adapter<MateriVideoAdapter.
         holder.tv_keterangan.setText("Keterangan : " + itemTable.getKeterangan());
 
 
-        try {
-            BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
-            TrackSelector trackSelector = new DefaultTrackSelector(new AdaptiveTrackSelection.Factory(bandwidthMeter));
-            holder.tv_exo = ExoPlayerFactory.newSimpleInstance(context, trackSelector);
-            Uri videouri = Uri.parse(itemTable.getFile());
-            DefaultHttpDataSourceFactory dataSourceFactory = new DefaultHttpDataSourceFactory("exoplayer_video");
-            ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
-            MediaSource mediaSource = new ExtractorMediaSource(
-                    videouri, dataSourceFactory, extractorsFactory, null, null);
-            holder.tv_exo_view.setPlayer(holder.tv_exo);
-            holder.tv_exo.prepare(mediaSource);
-            holder.tv_exo.setPlayWhenReady(false);
-        } catch (Exception e) {
-            Log.e("FragVID", "Exoplayer error" + e.toString());
-        }
+        Picasso.get().load(itemTable.getFile())
+                .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
+                .into(holder.tv_player);
+
+//        RequestOptions requestOptions = new RequestOptions();
+//        requestOptions.isMemoryCacheable();
+//        Glide.with(context).setDefaultRequestOptions(requestOptions).load(itemTable.getFile()).into(holder.r1_select);
+
+        Bitmap thumb = ThumbnailUtils.createVideoThumbnail(itemTable.getFile(),
+                MediaStore.Images.Thumbnails.MINI_KIND);
+//
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(context.getResources(), thumb);
+
+//        holder.r1_select.setBackgroundResource(R.color.colorWhite);
+        holder.r1_select.setAlpha(0);
+
+        holder.r1_select.setBackground(bitmapDrawable);
+
+        holder.r1_select.setOnClickListener(v -> {
+            Intent i = new Intent(context, VideoPlayer.class);
+            i.putExtra("video", itemTable.getFile());
+            activity.startActivity(i);
+        });
+
+
 
 //        holder.tv_videoPLayer.startPlay(itemTable.getFile(), MxVideoPlayer.SCREEN_LAYOUT_NORMAL, itemTable.getNama_materi());
 
@@ -93,8 +103,8 @@ public class MateriVideoAdapter extends RecyclerView.Adapter<MateriVideoAdapter.
     class RecyclerViewAdapter extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView tv_nama_materi, tv_keterangan, tv_times;
-        PlayerView tv_exo_view;
-        SimpleExoPlayer tv_exo;
+        ImageView tv_player;
+        RelativeLayout r1_select;
         CardView card_item;
         MateriVideoAdapter.ItemClickListener itemClickListener;
 
@@ -105,7 +115,10 @@ public class MateriVideoAdapter extends RecyclerView.Adapter<MateriVideoAdapter.
             tv_nama_materi = itemTable.findViewById(R.id.nama);
             tv_keterangan = itemTable.findViewById(R.id.keterangan);
             tv_times = itemTable.findViewById(R.id.times);
-            tv_exo_view = itemTable.findViewById(R.id.video_view);
+
+            tv_player = itemTable.findViewById(R.id.vid_image);
+            r1_select = itemTable.findViewById(R.id.r1_select);
+
             card_item = itemTable.findViewById(R.id.card_item);
 
             card_item.setOnClickListener(this);

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".siswa.profile.Profile">
+
+    <View
+        android:layout_marginLeft="-420dp"
+        android:layout_marginTop="-309dp"
+        android:layout_width="849dp"
+        android:layout_height="758dp"
+        android:background="@drawable/oval_card_profile"
+        tools:layout_editor_absoluteX="-409dp"
+        tools:layout_editor_absoluteY="-270dp" />
+
+    <RelativeLayout
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/photo"
+            android:src="@drawable/ic_person"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"/>
+
+        <TextView
+            android:id="@+id/upload"
+            android:layout_below="@+id/photo"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:text="Upload photo profile"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:id="@+id/lineNama"
+            android:layout_below="@+id/upload"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/nama"
+                android:textStyle="bold"
+                android:textColor="@color/colorWhite"
+                android:text="Nama lengkap"
+                android:textSize="17sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:visibility="gone"
+                android:id="@+id/layoutnama"
+                android:textColorHint="@color/colorWhite"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:inputType="text"
+                    android:hint="Input your new name"
+                    android:textColor="@color/colorWhite"
+                    android:id="@+id/et_nama"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/editNama"
+                android:src="@drawable/ic_edit"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:id="@+id/saveNama"
+                android:src="@drawable/ic_save"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/nisn"
+            android:layout_below="@+id/lineNama"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"
+            android:text="NISN"
+            android:textSize="17sp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_below="@+id/nisn"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"
+            android:text="Username"
+            android:textSize="17sp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:id="@+id/linePass"
+            android:layout_below="@+id/username"
+            android:layout_marginTop="120dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/pass"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Change password"
+                android:textSize="17sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:id="@+id/editPass"
+                android:src="@drawable/ic_edit_primary"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:visibility="gone"
+            android:layout_above="@+id/logout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/logout"
+            android:background="@drawable/circlebutton"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:text="LOGOUT"
+            android:textColor="@color/colorGray"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

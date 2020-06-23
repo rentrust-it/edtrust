@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#BA275E</color> //reflection
+    <color name="colorPrimaryDark">#8E0438</color> //blue pine
+    <color name="colorAccentLight">#7DA3A1</color> //mist
+
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorRED">#8D230F</color>
+    <color name="colorOrange">#F0810F</color>
+    <color name="colorYellow">#fcca03</color>
+    <color name="colorGray">#C4C2C3</color>
+    <color name="colorBlack">#000000</color>
+
+    <color name="colorWhiteTransparent">#BFFFFFFF</color>
+</resources>

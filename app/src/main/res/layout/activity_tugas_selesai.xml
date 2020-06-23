@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorWhite"
+    tools:context=".siswa.tugas.worker.TugasSelesai">
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer"
+        android:visibility="gone"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:id="@+id/c1"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_width="200dp"
+                android:layout_height="200sp"/>
+
+
+
+            <View
+                android:id="@+id/v1"
+                android:layout_below="@+id/c1"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="20sp"/>
+
+            <View
+                android:id="@+id/v2"
+                android:layout_below="@+id/v1"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="20sp"/>
+
+            <View
+                android:id="@+id/v3"
+                android:layout_below="@+id/v2"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="20sp"/>
+
+            <View
+                android:id="@+id/v4"
+                android:layout_below="@+id/v3"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginBottom="15dp"
+                android:layout_width="300dp"
+                android:layout_height="20sp"/>
+
+            <View
+                android:id="@+id/v5"
+                android:layout_below="@+id/v4"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginBottom="10dp"
+                android:layout_width="250dp"
+                android:layout_height="20sp"/>
+
+            <View
+                android:id="@+id/v6"
+                android:layout_below="@+id/v5"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginBottom="10dp"
+                android:layout_width="250dp"
+                android:layout_height="20sp"/>
+
+            <View
+                android:id="@+id/v7"
+                android:layout_below="@+id/v6"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginBottom="10dp"
+                android:layout_width="250dp"
+                android:layout_height="20sp"/>
+
+            <View
+                android:id="@+id/v8"
+                android:layout_below="@+id/v7"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginBottom="10dp"
+                android:layout_width="250dp"
+                android:layout_height="20sp"/>
+
+            <View
+                android:id="@+id/v9"
+                android:layout_below="@+id/v8"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginBottom="10dp"
+                android:layout_width="250dp"
+                android:layout_height="20sp"/>
+
+        </RelativeLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <ScrollView
+        android:id="@+id/no_shimmer"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/img_logo"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/hooray"
+            android:layout_centerHorizontal="true"
+            android:layout_width="300dp"
+            android:layout_height="300dp"/>
+
+        <TextView
+            android:id="@+id/txt_congrats"
+            android:layout_below="@id/img_logo"
+            android:text="Selamat anda telah menyelesaikan tugas yang telah diberikan oleh guru anda!"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/txt_giveto"
+            android:layout_below="@id/txt_congrats"
+            android:text="Nilai ini telah diberikan kepada :"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/namaSiswa"
+            android:layout_below="@+id/txt_giveto"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginTop="10dp"
+            android:text="Nama siswa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/nisn"
+            android:layout_below="@+id/namaSiswa"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            android:text="NISN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/nilai"
+            android:layout_below="@+id/nisn"
+            android:gravity="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:text="SCORE "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/confirm"
+            android:layout_below="@+id/nilai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/circlebutton"
+            android:textSize="20sp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="KEMBALI KE BERANDA"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

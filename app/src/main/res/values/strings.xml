@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Edtrust</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="tab_text_1">PDF FILES</string>
+    <string name="tab_text_2">IMAGES</string>
+    <string name="tab_text_3">VIDEOS</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="adUnitBanner">ca-app-pub-2267434843946816/7215391567</string>
+    <string name="adUnitInterstitial">ca-app-pub-2267434843946816/8643220970</string>
+    <string name="adApps">ca-app-pub-2267434843946816~5396162999</string>
+</resources>
