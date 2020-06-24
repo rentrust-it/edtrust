@@ -18,30 +18,38 @@
             android:id="@+id/relative_vid"
             android:background="@color/colorWhite"
             android:layout_width="match_parent"
-            android:layout_height="250dp">
+            android:layout_height="200dp">
 
             <ImageView
-                android:id="@+id/vid_image"
+                android:id="@+id/thumb"
                 android:scaleType="fitXY"
+                android:src="@drawable/no_thumbnail"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
+                android:layout_height="match_parent"/>
 
             <RelativeLayout
                 android:id="@+id/r1_select"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:alpha="0.5"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </RelativeLayout>
+                android:layout_height="match_parent"></RelativeLayout>
 
             <ImageView
                 android:src="@drawable/ic_play"
                 android:layout_centerInParent="true"
-                android:layout_width="25dp"
-                android:layout_height="25dp" />
+                android:layout_width="80dp"
+                android:layout_height="80dp" />
+
+            <TextView
+                android:id="@+id/times"
+                android:text="00:00"
+                android:layout_alignParentBottom="true"
+                android:gravity="right"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </RelativeLayout>
 
@@ -51,6 +59,7 @@
             android:text="Nama materi"
             android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold"
+            android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_width="match_parent"
@@ -63,8 +72,10 @@
             android:textColor="@color/colorPrimary"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
 
     </RelativeLayout>
 

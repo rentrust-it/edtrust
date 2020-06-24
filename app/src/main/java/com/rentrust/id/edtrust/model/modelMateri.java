@@ -25,6 +25,8 @@ public class modelMateri {
     @Expose
     @SerializedName("file") private String file;
     @Expose
+    @SerializedName("thumb") private String thumb;
+    @Expose
     @SerializedName("str_thumbs") private String str_thumbs;
     boolean boolean_selected;
     @Expose
@@ -110,6 +112,14 @@ public class modelMateri {
 
     public void setFile(String file) {
         this.file = file;
+    }
+
+    public String getThumb() {
+        return thumb;
+    }
+
+    public void setThumb(String thumb) {
+        this.thumb = thumb;
     }
 
     public String getStr_thumbs() {

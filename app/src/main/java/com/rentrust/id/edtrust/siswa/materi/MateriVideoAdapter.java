@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
+import android.os.Build;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +27,7 @@ import com.rentrust.id.edtrust.model.modelMateri;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class MateriVideoAdapter extends RecyclerView.Adapter<MateriVideoAdapter.RecyclerViewAdapter> {
@@ -64,23 +67,18 @@ public class MateriVideoAdapter extends RecyclerView.Adapter<MateriVideoAdapter.
         holder.tv_keterangan.setText("Keterangan : " + itemTable.getKeterangan());
 
 
-        Picasso.get().load(itemTable.getFile())
+        Picasso.get().load(itemTable.getThumb())
                 .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
-                .into(holder.tv_player);
+                .placeholder(R.drawable.no_thumbnail)
+                .into(holder.tv_thumb);
 
-//        RequestOptions requestOptions = new RequestOptions();
-//        requestOptions.isMemoryCacheable();
-//        Glide.with(context).setDefaultRequestOptions(requestOptions).load(itemTable.getFile()).into(holder.r1_select);
+//        Glide.with(context).load(itemTable.getThumb())
+//                .skipMemoryCache(false)
+//                .into(holder.tv_thumb);
 
-        Bitmap thumb = ThumbnailUtils.createVideoThumbnail(itemTable.getFile(),
-                MediaStore.Images.Thumbnails.MINI_KIND);
-//
-        BitmapDrawable bitmapDrawable = new BitmapDrawable(context.getResources(), thumb);
-
-//        holder.r1_select.setBackgroundResource(R.color.colorWhite);
         holder.r1_select.setAlpha(0);
 
-        holder.r1_select.setBackground(bitmapDrawable);
+//        holder.r1_select.setBackground(bitmapDrawable);
 
         holder.r1_select.setOnClickListener(v -> {
             Intent i = new Intent(context, VideoPlayer.class);
@@ -88,9 +86,34 @@ public class MateriVideoAdapter extends RecyclerView.Adapter<MateriVideoAdapter.
             activity.startActivity(i);
         });
 
+        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        retriever.setDataSource(itemTable.getFile(), new HashMap<String, String>());
+        String time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+        long timeInMillisec = Long.parseLong(time);
+        retriever.release();
+        String duration=convertMillieToHMmSs(timeInMillisec); //use this duration
 
+
+
+        holder.tv_times.setText(duration);
 
 //        holder.tv_videoPLayer.startPlay(itemTable.getFile(), MxVideoPlayer.SCREEN_LAYOUT_NORMAL, itemTable.getNama_materi());
+
+    }
+
+    public static String convertMillieToHMmSs(long millie) {
+        long seconds = (millie / 1000);
+        long second = seconds % 60;
+        long minute = (seconds / 60) % 60;
+        long hour = (seconds / (60 * 60)) % 24;
+
+        String result = "";
+        if (hour > 0) {
+            return String.format("%02d:%02d:%02d", hour, minute, second);
+        }
+        else {
+            return String.format("%02d:%02d" , minute, second);
+        }
 
     }
 
@@ -103,7 +126,7 @@ public class MateriVideoAdapter extends RecyclerView.Adapter<MateriVideoAdapter.
     class RecyclerViewAdapter extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView tv_nama_materi, tv_keterangan, tv_times;
-        ImageView tv_player;
+        ImageView tv_thumb;
         RelativeLayout r1_select;
         CardView card_item;
         MateriVideoAdapter.ItemClickListener itemClickListener;
@@ -115,8 +138,8 @@ public class MateriVideoAdapter extends RecyclerView.Adapter<MateriVideoAdapter.
             tv_nama_materi = itemTable.findViewById(R.id.nama);
             tv_keterangan = itemTable.findViewById(R.id.keterangan);
             tv_times = itemTable.findViewById(R.id.times);
+            tv_thumb = itemTable.findViewById(R.id.thumb);
 
-            tv_player = itemTable.findViewById(R.id.vid_image);
             r1_select = itemTable.findViewById(R.id.r1_select);
 
             card_item = itemTable.findViewById(R.id.card_item);
