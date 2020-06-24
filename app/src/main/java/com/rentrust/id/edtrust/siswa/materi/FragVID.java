@@ -63,8 +63,6 @@ public class FragVID extends Fragment implements MateriView{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.frag_vid, container, false);
 
-        ButterKnife.bind(this, v);
-
         recyclerView = v.findViewById(R.id.recyclerView);
         swipeRefresh = v.findViewById(R.id.swipe_refresh);
         ad_banner = v.findViewById(R.id.adView);
@@ -74,8 +72,7 @@ public class FragVID extends Fragment implements MateriView{
         AdRequest adRequest = new AdRequest.Builder().addTestDevice("CEE26DC1A5BBF0E603B08A5460483046").build();
         ad_banner.loadAd(adRequest);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         sessionManager = new SessionManager(getContext());
 
